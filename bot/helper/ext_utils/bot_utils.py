@@ -472,6 +472,10 @@ def is_filepress_link(url: str):
     url = re_match(r'https?://(filepress|filebee)\.\S+', url)
     return bool(url)
 
+def is_gdflix_appdrive(url: str):
+    url = re_match(r'https?://(appdrive|gdflix)\.\S+', url)
+    return bool(url)
+
 def is_mega_link(url: str):
     return "mega.nz" in url or "mega.co.nz" in url
 
