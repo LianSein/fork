@@ -94,8 +94,8 @@ def direct_link_generator(link: str):
         return shareDrive(link)
     elif is_filepress_link(link):
         return filepress(link)
-    elif is_gdflix_appdrive(link)
-        return gdflix_appdrive(link)
+    elif is_gdflix_appdrive(link):
+        return gdflixappdrive(link)
     elif any(x in link for x in fmed_list):
         return fembed(link)
     elif any(x in link for x in ['sbembed.com', 'watchsb.com', 'streamsb.net', 'sbplay.org']):
@@ -796,7 +796,7 @@ def terabox(url) -> str:
         raise DirectDownloadLinkException("ERROR: Can't download folder")
     return result['dlink']
 
-def gdflix_appdrive(url):
+def gdflixappdrive(url):
     try:
         cget = create_scraper().request
         url = cget('GET', url).url
