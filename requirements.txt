@@ -20,9 +20,7 @@ gunicorn
 lk21
 lxml
 markdown
-mediainfo
 pillow
-playwright
 psutil
 pybase64
 pycountry
@@ -38,7 +36,6 @@ telegraph
 tenacity
 tgCrypto
 urllib3
-waybackpy
 xattr
 yt-dlp
 
