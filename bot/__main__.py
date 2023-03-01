@@ -23,7 +23,7 @@ from .helper.telegram_helper.button_build import ButtonMaker
 from bot import config_dict, botStartTime, Interval, QbInterval, LOGGER, DATABASE_URL, bot, dispatcher, updater, IGNORE_PENDING_REQUESTS, \
                 app, main_loop
 from .modules import authorize, list, cancel_mirror, mirror_status, mirror_leech, clone, ytdlp, shell, eval, bot_settings, \
-                     delete, count, users_settings, search, rss, wayback, speedtest, anilist, imdb, bt_select, mediainfo, hash, \
+                     delete, count, users_settings, search, rss, speedtest, anilist, imdb, bt_select, hash, \
                      scraper, pictures, save_msg, sel_cat
 
 version = "5.0.0"
@@ -91,7 +91,7 @@ def stats(update, context):
                     f'<b>╰ 🔻 Download Data:</b> {recv}\n\n'
 
     else:
-            stats = f'<b>╭─《🌐 BOT STATISTICS 🌐》</b>\n' \
+            stats = f'<b>╭─《 BOT STATISTICS 》</b>\n' \
                     f'<b>├  Updated On: </b>{last_commit}\n'\
                     f'<b>├  Uptime: </b>{currentTime}\n'\
                     f'<b>├  Version: </b>{version}\n'\
@@ -425,20 +425,20 @@ def main():
                 if ospath.isfile(".restartmsg"):
                     with open(".restartmsg") as f:
                         chat_id, msg_id = map(int, f)
-                    msg = f"😎 Restarted Successfully❗\n"
+                    msg = f"Restarted Successfully\n"
                 else:
-                    msg = f"😎 Bot Restarted!\n"
-                msg += f"📅 DATE: {date}\n"
-                msg += f"⌚ TIME: {time}\n"
-                msg += f"🌐 TIMEZONE: {timez}\n"
-                msg += f"🤖 VERSION: {version}"
+                    msg = f"Bot Restarted!\n"
+                msg += f"DATE: {date}\n"
+                msg += f"TIME: {time}\n"
+                msg += f"TIMEZONE: {timez}\n"
+                msg += f"VERSION: {version}"
 
                 for tag, links in data.items():
                     msg += f"\n{tag}: "
                     for index, link in enumerate(links, start=1):
                         msg += f" <a href='{link}'>{index}</a> |"
                         if len(msg.encode()) > 4000:
-                            if '😎 Restarted Successfully❗' in msg and cid == chat_id:
+                            if 'Restarted Successfully' in msg and cid == chat_id:
                                 try:
                                     bot.editMessageText(msg, chat_id, msg_id)
                                 except:
@@ -450,7 +450,7 @@ def main():
                                 except Exception as e:
                                     LOGGER.error(e)
                             msg = ''
-                if '😎 Restarted Successfully❗' in msg and cid == chat_id:
+                if 'Restarted Successfully' in msg and cid == chat_id:
                     try:
                         bot.editMessageText(msg, chat_id, msg_id)
                     except:
@@ -466,11 +466,11 @@ def main():
         with open(".restartmsg") as f:
             chat_id, msg_id = map(int, f)
         try:
-            msg = f"😎 Restarted Successfully❗\n"
-            msg += f"📅 DATE: {date}\n"
-            msg += f"⌚ TIME: {time}\n"
-            msg += f"🌐 TIMEZONE: {timez}\n"
-            msg += f"🤖 VERSION: {version}"            
+            msg = f"Restarted Successfully\n"
+            msg += f"DATE: {date}\n"
+            msg += f"TIME: {time}\n\n"
+            msg += f"TIMEZONE: {timez}\n"
+            msg += f"VERSION: {version}"            
             bot.edit_message_text(msg, chat_id, msg_id)
         except Exception as e:
             LOGGER.info(e)
@@ -498,7 +498,7 @@ def main():
     dispatcher.add_handler(stats_handler)
     dispatcher.add_handler(log_handler)
     updater.start_polling(drop_pending_updates=IGNORE_PENDING_REQUESTS)
-    LOGGER.info("💥𝐁𝐨𝐭 𝐒𝐭𝐚𝐫𝐭𝐞𝐝❗")
+    LOGGER.info("B𝐨𝐭 𝐒𝐭𝐚𝐫𝐭𝐞d")
     signal(SIGINT, exit_clean_up)
 
 app.start()
