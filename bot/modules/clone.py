@@ -6,7 +6,7 @@ from time import sleep, time
 
 from bot.helper.ext_utils.bot_utils import is_sudo, is_paid, get_user_task, get_category_buttons, get_readable_file_size, getUserTDs, \
                     new_thread, get_bot_pm, is_url, is_gdrive_link, is_gdtot_link, is_udrive_link, is_sharer_link, \
-                    is_sharedrive_link, is_filepress_link, userlistype
+                    is_sharedrive_link, is_filepress_link, is_gdflix_appdrive, userlistype
 from bot.helper.ext_utils.exceptions import DirectDownloadLinkException
 from bot.helper.ext_utils.timegap import timegap_check
 from bot.helper.mirror_utils.download_utils.direct_link_generator import gdtot, udrive, sharer_pw_dl, shareDrive, filepress
@@ -172,7 +172,8 @@ def start_clone(listelem):
     is_sharer = is_sharer_link(link)
     is_sharedrive = is_sharedrive_link(link)
     is_filepress = is_filepress_link(link)
-    if (is_gdtot or is_udrive or is_sharer or is_sharedrive or is_filepress):
+    is_bsdk = is_gdflix_appdrive(link)
+    if (is_gdtot or is_udrive or is_sharer or is_sharedrive or is_filepress or is_bsdk):
         try:
             LOGGER.info(f"Processing: {link}")
             if is_gdtot:
@@ -190,6 +191,9 @@ def start_clone(listelem):
             elif is_filepress:
                 msg = sendMessage(f"FILEPRESS LINK DETECTED !", bot, message)
                 link = filepress(link)
+            elif is_bsdk:
+                msg = sendMessage(f"Lawde ka LINK DETECTED !", bot, message)
+                link = gdflixappdrive(link)
             LOGGER.info(f"Generated GDrive Link: {link}")
             deleteMessage(bot, msg)
         except DirectDownloadLinkException as e:
